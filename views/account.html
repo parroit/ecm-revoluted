@@ -13,14 +13,17 @@
             </div>
         </div>
 
-        <div class="field">
+       <!-- <div class="field">
             <label for="nome">Nome</label>
             <div>
                 <input type="text" id="nome" name="nome" value={{user.nome}}>
                 <span class="error"></span>
             </div>
-        </div>
+        </div>-->
+        {{#af.field}}
+                <input type="text" name="nome">
 
+        {{/af.field}}
 
         <div class="field" >
             <label for="cognome">Cognome</label>

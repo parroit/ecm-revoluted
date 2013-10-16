@@ -1,4 +1,5 @@
 
+var Aweforms = require("./aweforms").Aweforms;
 
 exports.mount= function(app) {
     app.get('/account',app.ensureAuthenticated ,account);
@@ -15,10 +16,15 @@ exports.mount= function(app) {
                 if (err) {
                     req.flash('flash', err.toString())
                 } else {
-                    throw err;
+
                 }
 
-                res.render('account', { user: savedUser,flash: req.flash('flash') });
+                var aweforms = new Aweforms("user");
+                res.render('account', {
+                    user: savedUser,
+                    flash: req.flash('flash'),
+                    af: aweforms
+                });
             });
         });
 
@@ -28,6 +34,6 @@ exports.mount= function(app) {
 };
 
 function account(req, res){
-  res.render('account', { user: req.user });
+  res.render('account', { user: req.user ,af:new Aweforms("user") });
 }
 
