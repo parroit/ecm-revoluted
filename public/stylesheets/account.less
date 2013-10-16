@@ -1,0 +1,40 @@
+
+#edit-user {
+  .form-horizontal();
+  .alert();
+  .makeRow();
+
+  .left-column{
+    .makeColumn(4);
+  }
+  .right-column{
+    .makeColumn(4,1);
+  }
+  .buttons{
+    .makeColumn(8,1);
+
+  }
+
+  div.field.error{
+    .control-group.error();
+    .text-error();
+  }
+
+  div.field {
+    .control-group();
+
+    label {
+      .control-label();
+    }
+
+
+
+    div {
+      .controls();
+
+      span.error {
+        .help-block();
+      }
+    }
+  }
+}

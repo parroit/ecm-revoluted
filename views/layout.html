@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECM Revoluted</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body class="container">
+    {{#flash}}
+        <div class="alert alert-block alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>Impossibile salvare</h4>
+            {{.}}
+
+        </div>
+    {{/flash}}
+
+    {{{ yield }}}
+    <a href="/logout">Logout</a>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</body>
+</html>
