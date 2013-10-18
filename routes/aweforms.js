@@ -11,16 +11,17 @@ exports.Aweforms.prototype.field = function(){
         var $input = $("input");
         var id = $input.attr("name");
 
+        var qualifiedId = self.af.modelName + "." + id;
         $input
-            .attr("id", id)
-            .attr("value", "{{" + self.af.modelName + "." + id + "}}");
+            .attr("id", qualifiedId)
+            .attr("value", "{{" + qualifiedId + "}}");
 
         return [
             '<div class="field">',
-            '<label for="', id, '">Nome</label>',
+            '<label for="', qualifiedId, '">Nome</label>',
             '<div>',
             $.html(),
-            '<span class="error">{{', self.af.modelName, '.errors.', id, '.message}}</span>',
+            '<span class="error">{{', self.af.modelName, '.errors.', qualifiedId, '.message}}</span>',
             '</div>',
             '</div>'
         ].join("");
