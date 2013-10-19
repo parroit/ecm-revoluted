@@ -1,6 +1,16 @@
 var cheerio = require('cheerio');
-exports.Aweforms = function(modelName){
-    this.modelName = modelName;
+
+
+exports.Aweforms = function(){
+
+};
+
+
+exports.init = function (req, res, next) {
+    // mustache helper
+    res.locals.af = new exports.Aweforms();
+
+    next();
 };
 
 
@@ -9,21 +19,25 @@ exports.Aweforms.prototype.field = function(){
     return function(text, render) {
         var $ = cheerio.load(text);
         var $input = $("input");
-        var id = $input.attr("name");
 
-        var qualifiedId = self.af.modelName + "." + id;
+        var qualifiedId =  $input.attr("id");
+        var idParts = qualifiedId.split(".");
         $input
-            .attr("id", qualifiedId)
+            .attr("name", idParts[1])
             .attr("value", "{{" + qualifiedId + "}}");
 
+        var errors = this[idParts[0]].errors;
+        var fieldError = errors && errors[idParts[1]]  && errors[idParts[1]].type;
+
         return [
-            '<div class="field">',
-            '<label for="', qualifiedId, '">Nome</label>',
+            '<div class="field ',(fieldError ? "text-error":""),'">',
+            '<label for="', qualifiedId, '">{{#t}}', qualifiedId,'{{/t}}</label>',
             '<div>',
             $.html(),
-            '<span class="error">{{', self.af.modelName, '.errors.', qualifiedId, '.message}}</span>',
+            '<span class="error">{{#t}}',fieldError,'{{/t}}</span>',
             '</div>',
             '</div>'
         ].join("");
     }
 };
+

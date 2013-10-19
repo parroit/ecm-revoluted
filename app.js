@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+var config = require("./config");
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -19,16 +20,48 @@ app.set ('layout', 'layout');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
+app.use(express.cookieParser(config.cookieSecret));
+
+var MongoStore = require('connect-mongo')(express);
+
+app.use(express.session({
+    secret: config.sessionSecret,
+    store: new MongoStore({
+        db: config.dbName
+    })
+}));
+
 var flash = require('connect-flash');
 app.use(flash());
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  app.disable('view achce');
+  app.disable('view cache');
 }
+
+var i18n = require("i18n");
+i18n.configure({
+    locales: ['it'],
+    cookie: config.i18nCookieName,
+    directory: __dirname + '/locales'
+});
+app.use(i18n.init);
+
+// register helper as a locals function wrapped as mustache expects
+app.use(function (req, res, next) {
+    // mustache helper
+    res.locals.t = function () {
+        return function (text, render) {
+            return i18n.__.apply(req, arguments);
+        };
+    };
+
+    next();
+});
+
+var aweforms = require("./routes/aweforms");
+app.use(aweforms.init);
 
 var routes = fs.readdirSync("routes");
 routes.sort();
@@ -44,12 +77,13 @@ routes.forEach(function(routePath){
 });
 
 
+
 app.use(app.router);
 app.use(require('less-middleware')({ src: __dirname + '/public' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-require("ecm-model").connect('mongodb://localhost/ecm',function (schemas, models){
+require("ecm-model").connect('mongodb://localhost/'+config.dbName,function (schemas, models){
     app.models = models;
     app.schemas = schemas;
     console.log('Mongodb connection ready');

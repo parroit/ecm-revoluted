@@ -1,5 +1,5 @@
 
-var Aweforms = require("./aweforms").Aweforms;
+
 
 exports.mount= function(app) {
     app.get('/account',app.ensureAuthenticated ,account);
@@ -11,6 +11,11 @@ exports.mount= function(app) {
                 savedUser[prop] = req.body[prop];
             }
 
+            for (var prop in ['confirmed','admin','staff','conteggio_ore']){
+                savedUser[prop] = req.body[prop] || false;
+            }
+
+            console.dir(req.body["staff"]);
 
             savedUser.save(function (err) {
                 if (err) {
@@ -19,11 +24,11 @@ exports.mount= function(app) {
 
                 }
 
-                var aweforms = new Aweforms("user");
+
                 res.render('account', {
                     user: savedUser,
-                    flash: req.flash('flash'),
-                    af: aweforms
+                    flash: req.flash('flash')
+
                 });
             });
         });
@@ -34,6 +39,6 @@ exports.mount= function(app) {
 };
 
 function account(req, res){
-  res.render('account', { user: req.user ,af:new Aweforms("user") });
+  res.render('account', { user: req.user });
 }
 

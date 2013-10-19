@@ -22,24 +22,38 @@ describe('aweforms', function () {
     describe("field", function () {
         it("wrap input in bt horizontal form", function () {
 
-            var template = hogan.compile('{{#af.field}}<input type="text" name="test">{{/af.field}}');
+            var template = hogan.compile('{{#af.field}}<input type="text" id="user.test">{{/af.field}}');
             var aw = new Aweforms("user");
 
             var result =  template.render({
-                user: {
-                    test:"ciao"
+                t:function () {
+                    return function (text, render) {
+                        return "aLabel";
+                    };
                 },
+                user: {
+                    test:"ciao" ,
+
+                    errors:{
+
+                        test:{
+                            message:"ERROR"
+                        }
+
+                    }
+                },
+
                 af: aw
             });
 
             expect(result).to.be.equal(
                 '<div class="field">'+
                     '<label for="user.test">'+
-                        'Nome'+
+                        'aLabel'+
                     '</label>'+
                     '<div>'+
-                        '<input type="text" name="test" id="user.test" value="ciao">'+
-                        '<span class="error"></span>'+
+                        '<input type="text" id="user.test" name="test" value="ciao">'+
+                        '<span class="error">ERROR</span>'+
                     '</div>'+
                 '</div>'
             );

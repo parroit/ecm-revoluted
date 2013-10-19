@@ -13,16 +13,9 @@
             </div>
         </div>
 
-       <!-- <div class="field">
-            <label for="nome">Nome</label>
-            <div>
-                <input type="text" id="nome" name="nome" value={{user.nome}}>
-                <span class="error"></span>
-            </div>
-        </div>-->
-        {{#af.field}}
-                <input type="text" name="nome">
 
+        {{#af.field}}
+            <input type="text" id="user.nome">
         {{/af.field}}
 
         <div class="field" >
@@ -51,7 +44,7 @@
             <label for="data_nascita">Data Nascita</label>
             <div>
 
-                <input data-date-format="dd/mm/yyyy" class="datepicker" type="text" id="data_nascita"  name="data_nascita" value="{{user.data_nascita}}">
+                <input type="date" id="data_nascita"  name="data_nascita" value="{{user.data_nascita}}">
                 <span class="error"></span>
 
             </div>
@@ -66,7 +59,8 @@
         <div class="field" >
             <label for="conteggio_ore">Conteggio ore</label>
             <div>
-                <input type="checkbox" id="conteggio_ore"  name="conteggio_ore" value="{{user.conteggio_ore}}">
+                <input type="checkbox" id="conteggio_ore"  name="conteggio_ore"
+                    {{#user.conteggio_ore}}checked="checked"{{/user.conteggio_ore}}>
                 <span class="error"></span>
             </div>
         </div>
@@ -120,14 +114,16 @@
         <div class="field" >
             <label for="staff">Staff</label>
             <div>
-                <input type="checkbox" id="staff"  name="staff" value="{{user.staff}}">
+                <input type="checkbox" id="staff"  name="staff"
+                    {{#user.staff}}checked="checked"{{/user.staff}}>
                 <span class="error"></span>
             </div>
         </div>
         <div class="field" >
             <label for="confirmed">Confermato</label>
             <div>
-                <input type="checkbox" id="confirmed"  name="confirmed" value="{{user.confirmed}}">
+                <input type="checkbox" id="confirmed"  name="confirmed"
+                    {{#user.confirmed}}checked="checked"{{/user.confirmed}}>
                 <span class="error"></span>
             </div>
         </div>
