@@ -4,7 +4,11 @@
 
     <div class="left-column">
         {{#af.field}}
-        <input readonly type="text" id="user.name">
+        <input readonly="readonly" type="text" id="user.name">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.password">
         {{/af.field}}
 
 
@@ -36,6 +40,9 @@
         <input type="checkbox" id="user.conteggio_ore">
         {{/af.field}}
 
+        {{#af.field}}
+        <input type="text" id="user.sponsor">
+        {{/af.field}}
     </div>
 
 
@@ -69,9 +76,7 @@
         <input type="text" id="user.farmacia">
         {{/af.field}}
 
-        {{#af.field}}
-        <input type="text" id="user.sponsor">
-        {{/af.field}}
+
 
         {{#af.field}}
         <input type="checkbox" id="user.staff">
@@ -86,7 +91,11 @@
         {{/af.field}}
 
         {{#af.field}}
-        <input type="date" id="user.creation_date">
+        <input  readonly="readonly" type="date" id="user.creation_date">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input  readonly="readonly" type="date" id="user.update_date">
         {{/af.field}}
 
 

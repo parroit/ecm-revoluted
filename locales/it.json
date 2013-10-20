@@ -23,5 +23,7 @@
 	"{{.}}": "{{.}}",
 	"flash-info-title": "Informazione",
 	"successfully-saved": "Salvato con successo.",
-	"data-error": "Impossibile salvare. C'è un errore nei dati"
+	"data-error": "Impossibile salvare. C'è un errore nei dati",
+	"user.update_date": "Modificato il",
+	"user.password": "user.password"
 }
