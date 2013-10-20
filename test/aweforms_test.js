@@ -125,7 +125,48 @@ describe('aweforms', function () {
             itShouldThrowFor(".name");
 
         });
+        it("set selected option when input type is select and value is in list", function () {
 
+            var template = hogan.compile(
+                '{{#af.field}}' +
+                    '<select id="user.test">' +
+                    '<option value="A">AA</option>' +
+                    '<option value="B">BB</option>' +
+                    '</select>' +
+
+                '{{/af.field}}'
+            );
+
+            var testModelSelect = _.cloneDeep(testModel);
+            testModelSelect.user.test = "B";
+            var result = template.render(testModelSelect);
+            var $ = cheerio.load(expected);
+            $("input").parent("div").html(
+                '<select id="user.test" name="test">' +
+                    '<option value="A">AA</option>' +
+                    '<option value="B" selected="selected">BB</option>' +
+                '</select>' +
+                '<span class="error">a test error</span>'
+
+            );
+            //console.log($.html());
+            expect(result).to.be.equal($.html());
+        });
+
+        it("doesn't set errors if model is correct", function () {
+
+
+
+            var testModelCorrect = _.cloneDeep(testModel);
+            delete testModelCorrect.user.errors;
+            var template = hogan.compile('{{#af.field}}<input type="text" id="user.test">{{/af.field}}');
+            var result = template.render(testModelCorrect);
+            var $ = cheerio.load(expected);
+            $("div.field").removeClass("text-error");
+            $("span.error").html("");
+
+            expect(result).to.be.equal($.html());
+        });
 
         it("set checked attr when input type is checkbox and value is true", function () {
 

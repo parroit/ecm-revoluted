@@ -41,11 +41,7 @@ if ('development' == app.get('env')) {
 }
 
 var i18n = require("i18n");
-i18n.configure({
-    locales: ['it'],
-    cookie: config.i18nCookieName,
-    directory: __dirname + '/locales'
-});
+i18n.configure(config.i18n);
 app.use(i18n.init);
 
 // register helper as a locals function wrapped as mustache expects
@@ -61,7 +57,7 @@ app.use(function (req, res, next) {
 });
 
 var aweforms = require("./routes/aweforms");
-app.use(aweforms.init);
+app.use(aweforms.init(i18n));
 
 var routes = fs.readdirSync("routes");
 routes.sort();

@@ -1,23 +1,22 @@
 var cheerio = require('cheerio');
 var _ = require('lodash');
 
-exports.newInstance = function(i18n){
+exports.newInstance = function (i18n) {
     var aweforms = new Aweforms(i18n);
-    aweforms.field = _.bind(aweforms.field,aweforms);
+    aweforms.field = _.bind(aweforms.field, aweforms);
     return  aweforms;
 };
 
-var Aweforms = function(i18n){
+var Aweforms = function (i18n) {
 
-    if (i18n){
-        console.dir("custom i18n");
+    if (i18n) {
+        //console.dir("custom i18n");
         this.i18n = i18n;
 
     } else {
-        console.dir("require i18n");
+        //console.dir("require i18n");
         this.i18n = require("i18n");
         this.i18n.configure({
-            locales: ['it'],
             directory: __dirname + '/locales'
         });
 
@@ -25,15 +24,17 @@ var Aweforms = function(i18n){
 };
 
 
-exports.init = function (req, res, next) {
-    // mustache helper
-    res.locals.af =exports.newInstance();
+exports.init = function (i18n) {
+    return function (req, res, next) {
+        // mustache helper
+        res.locals.af = exports.newInstance(i18n);
 
-    next();
+        next();
+    };
 };
 
 
-function getFieldId($input, text) {
+function getField(context, $input, text) {
     var qualifiedId = $input.attr("id");
 
     if (!qualifiedId) {
@@ -52,10 +53,20 @@ function getFieldId($input, text) {
         throw new Error("id should be fully qualified in field " + text);
     }
 
+    var modelValue = context[modelName];
+    var errors = modelValue.errors;
+    var fieldError = errors && errors[fieldName] && errors[fieldName].type;
+
+    var error = getError(fieldError);
+
+
     return {
         modelName: modelName,
         name: fieldName,
-        qualifiedId:qualifiedId
+        qualifiedId: qualifiedId,
+        modelValue: modelValue,
+        fieldValue: modelValue[fieldName],
+        error: error
     };
 }
 
@@ -73,44 +84,72 @@ function getError(fieldError) {
     }
     return error;
 }
-Aweforms.prototype.field = function(){
+function alterInput(field, $input) {
+    var modelValue = field.modelValue;
+    var fieldValue = field.fieldValue;
+
+    $input.attr("name", field.name);
+
+    if ($input.is("select")) {
+        if (fieldValue) {
+            $input.find("option").each(function () {
+                if (this.attr("value") == fieldValue)
+                    this.attr("selected", "selected");
+            });
+        }
+    } else if ($input.attr("type").toLowerCase() == "checkbox") {
+
+        if (fieldValue) {
+            $input.attr("checked", "checked")
+        }
+    } else {
+        $input.attr("value", fieldValue);
+    }
+    return modelValue;
+}
+
+
+function renderTemplate(modelField, self, templateText) {
+    var error,errorClass;
+
+    if (modelField.error && modelField.error.length && modelField.error[0]) {
+        error = self.i18n.__.apply(this, modelField.error);
+        errorClass = " text-error";
+    }
+    else {
+        error = "";
+        errorClass = "";
+    }
+
+    var label = self.i18n.__.call(this, modelField.qualifiedId);
+    return [
+        '<div class="field', errorClass, '">',
+        '<label for="', modelField.qualifiedId, '">', label, '</label>',
+        '<div>',
+        templateText.html(),
+        '<span class="error">', error, '</span>',
+        '</div>',
+        '</div>'
+    ].join("");
+}
+
+Aweforms.prototype.field = function () {
     var self = this;
 
-    return function(text, render) {
+    return function (text, render) {
 
         var $ = cheerio.load(text);
-        var $input = $("input");
+        var $input = $("input")
 
-        var field = getFieldId($input, text);
+        if (!$input.length)
+            $input = $("select");
 
-        var modelValue = this[field.modelName];
-        var fieldValue = modelValue[field.name];
+        var field = getField(this, $input, text);
 
-        $input.attr("name", field.name);
+        alterInput(field, $input);
 
-        if ($input.attr("type").toLowerCase() == "checkbox") {
 
-            if (fieldValue) {
-                $input.attr("checked", "checked")
-            }
-        } else {
-            $input.attr("value",fieldValue);
-        }
-
-        var errors = modelValue.errors;
-        var fieldError = errors && errors[field.name] && errors[field.name].type;
-
-        var error = getError(fieldError);
-        //console.log("field.qualifiedId: "+field.qualifiedId);
-        return [
-            '<div class="field ', (fieldError ? "text-error" : ""), '">',
-            '<label for="', field.qualifiedId, '">', self.i18n.__.call(this,field.qualifiedId), '</label>',
-            '<div>',
-            $.html(),
-            '<span class="error">', self.i18n.__.apply(this, error), '</span>',
-            '</div>',
-            '</div>'
-        ].join("");
+        return renderTemplate(field, self, $);
     }
 };
 
