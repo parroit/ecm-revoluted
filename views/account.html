@@ -5,135 +5,81 @@
 
 
     <div class="left-column">
-        <div class="field">
-            <label for="username">Username</label>
-            <div>
-
-                <input readonly type="text" id="username" value ="{{user.name}}">
-            </div>
-        </div>
+        {{#af.field}}
+            <input readonly type="text" id="user.name">
+        {{/af.field}}
 
 
         {{#af.field}}
             <input type="text" id="user.nome">
         {{/af.field}}
 
-        <div class="field" >
-            <label for="cognome">Cognome</label>
-            <div>
-                <input type="text" id="cognome" name="cognome" value="{{user.cognome}}">
-                <span class="error"></span>
-            </div>
-        </div>
+        {{#af.field}}
+            <input type="text" id="user.cognome">
+        {{/af.field}}
 
-        <div class="field" >
-            <label for="email_addr">Email</label>
-            <div>
-                <input type="text" id="email_addr"  name="email" value="{{user.email}}">
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="luogo_nascita">Luogo Nascita</label>
-            <div>
-                <input type="text" id="luogo_nascita"  name="luogo_nascita" value="{{user.luogo_nascita}}">
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="data_nascita">Data Nascita</label>
-            <div>
+        {{#af.field}}
+            <input type="email" id="user.email">
+        {{/af.field}}
 
-                <input type="date" id="data_nascita"  name="data_nascita" value="{{user.data_nascita}}">
-                <span class="error"></span>
+        {{#af.field}}
+            <input type="text" id="user.luogo_nascita">
+        {{/af.field}}
 
-            </div>
-        </div>
-        <div class="field error" >
-            <label for="codice_fiscale">Cod.Fiscale</label>
-            <div>
-                <input type="text" id="codice_fiscale"  name="codice_fiscale" value="{{user.codice_fiscale}}">
-                <span class="error">{{user.errors.codice_fiscale.message}}</span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="conteggio_ore">Conteggio ore</label>
-            <div>
-                <input type="checkbox" id="conteggio_ore"  name="conteggio_ore"
-                    {{#user.conteggio_ore}}checked="checked"{{/user.conteggio_ore}}>
-                <span class="error"></span>
-            </div>
-        </div>
+        {{#af.field}}
+            <input type="date" id="user.data_nascita">
+        {{/af.field}}
+
+        {{#af.field}}
+            <input type="text" id="user.codice_fiscale">
+        {{/af.field}}
+
+        {{#af.field}}
+            <input type="checkbox" id="user.conteggio_ore">
+        {{/af.field}}
+
     </div>
 
 
     <div class="right-column col">
-        <div class="field" >
-            <label for="prof_dip">Prof./Dip.</label>
-            <div>
-                <select id="prof_dip" name="prof_dip">
+        {{#af.field_}}
+                <select id="user.prof_dip" name="prof_dip">
                     <option value=""></option>
                     <option value="L">Libero professionista</option>
                     <option value="D">Dipendente</option>
                     <option value="C">Convenzionato</option>
 
                 </select>
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="professione">Professione</label>
-            <div>
-                <select id="professione" name="professione"></select>
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="disciplina">Disciplina</label>
-            <div>
-                <select id="disciplina"  name="disciplina" value="{{user.disciplina}}"></select>
-                <span class="error"></span>
-            </div>
-        </div>
+        {{/af.field_}}
 
+        {{#af.field_}}
+                <select id="user.professione"></select>
+        {{/af.field_}}
 
-        <div class="field" >
-            <label for="farmacia">Farmacia</label>
-            <div>
-                <input type="text" id="farmacia"  name="farmacia" value="{{user.farmacia}}">
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="sponsor">Sponsor</label>
-            <div>
-                <input type="text" id="sponsor"  name="sponsor" value="{{user.sponsor}}">
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="staff">Staff</label>
-            <div>
-                <input type="checkbox" id="staff"  name="staff"
-                    {{#user.staff}}checked="checked"{{/user.staff}}>
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="confirmed">Confermato</label>
-            <div>
-                <input type="checkbox" id="confirmed"  name="confirmed"
-                    {{#user.confirmed}}checked="checked"{{/user.confirmed}}>
-                <span class="error"></span>
-            </div>
-        </div>
-        <div class="field" >
-            <label for="creation_date">Iscritto il</label>
-            <div>
-                <input type="date" id="creation_date"  name="creation_date" value="{{user.creation_date}}">
-                <span class="error"></span>
-            </div>
-        </div>
+        {{#af.field_}}
+                <select id="user.disciplina"></select>
+        {{/af.field_}}
+
+        {{#af.field}}
+                <input type="text" id="user.farmacia">
+        {{/af.field}}
+
+        {{#af.field}}
+                <input type="text" id="user.sponsor">
+        {{/af.field}}
+
+        {{#af.field}}
+                <input type="checkbox" id="user.staff">
+        {{/af.field}}
+
+        {{#af.field}}
+                <input type="checkbox" id="user.confirmed">
+        {{/af.field}}
+
+        {{#af.field}}
+                <input type="date" id="user.creation_date">
+        {{/af.field}}
+
 
     </div>
     <div class="buttons">

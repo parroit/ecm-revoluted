@@ -1,5 +1,14 @@
 {
 	"user.nome": "Nome",
 	"required": "Questo campo è obbligatorio",
-	"": ""
+	"": "",
+	"max %s": "Questo campo accetta al massimo %s caratteri",
+	"user.name": "user.name",
+	"user.cognome": "user.cognome",
+	"user.email": "user.email",
+	"user.luogo_nascita": "user.luogo_nascita",
+	"user.data_nascita": "user.data_nascita",
+	"cf_uncorrect": "cf_uncorrect",
+	"user.codice_fiscale": "user.codice_fiscale",
+	"user.conteggio_ore": "user.conteggio_ore"
 }
