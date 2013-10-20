@@ -42,20 +42,27 @@
     <div class="right-column col">
         {{#af.field}}
         <select id="user.prof_dip" name="prof_dip">
-            <option value=""></option>
-            <option value="L">Libero professionista</option>
-            <option value="D">Dipendente</option>
-            <option value="C">Convenzionato</option>
+            {{#categorie}}
+                <option value="{{key}}">{{value}}</option>
 
+            {{/categorie}}
         </select>
         {{/af.field}}
 
         {{#af.field}}
-        <select id="user.professione"></select>
+        <select id="user.professione">
+            {{#professioni}}
+                <option value="{{key}}">{{value}}</option>
+            {{/professioni}}
+        </select>
         {{/af.field}}
 
         {{#af.field}}
-        <select id="user.disciplina"></select>
+        <select id="user.disciplina">
+            {{#discipline}}
+                <option value="{{key}}">{{value}}</option>
+            {{/discipline}}
+        </select>
         {{/af.field}}
 
         {{#af.field}}

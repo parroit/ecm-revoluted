@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-var aweforms = require("./routes/aweforms");
+var aweforms = require("aweforms");
 app.use(aweforms.init(i18n));
 
 var routes = fs.readdirSync("routes");
