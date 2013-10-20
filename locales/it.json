@@ -20,10 +20,10 @@
 	"user.disciplina": "Disciplina",
 	"user.admin": "Amministratore",
 	"flash-error-title": "Errore",
-	"{{.}}": "{{.}}",
 	"flash-info-title": "Informazione",
 	"successfully-saved": "Salvato con successo.",
 	"data-error": "Impossibile salvare. C'è un errore nei dati",
 	"user.update_date": "Modificato il",
-	"user.password": "user.password"
+	"user.password": "Password",
+	"welcome-message": "I suoi dati sono stati confermati con successo. Li potrà variare in qualsiasi momento dalla pagina del profilo."
 }

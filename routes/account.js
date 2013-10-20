@@ -1,5 +1,5 @@
 var _ = require("lodash");
-
+var crud = require("../lib/crud");
 
 exports.mount = function (app) {
     function presentHash(hash) {
@@ -24,7 +24,7 @@ exports.mount = function (app) {
         };
     }
 
-    crud({
+    crud(app,{
         rootUrl: "/account",
         findModel: function (req, next) {
             app.models.User.findOne({name: req.user.name}, next);
@@ -40,66 +40,7 @@ exports.mount = function (app) {
         ]
     });
 
-    function crud(options) {
-        var allProps = _.union(options.updatableBooleanProps,options.updatableProps);
 
-        app.get(
-            options.rootUrl,
-            app.ensureAuthenticated,
-
-            function (req, res) {
-                options.findModel(req, function (err, savedUser) {
-                    if (err) throw err;
-                    options.render(req, res, savedUser);
-                });
-                //res.render('account', getUserContext(req.user,req.flash()));
-            }
-        );
-
-        app.post(
-            options.rootUrl,
-            app.ensureAuthenticated,
-
-            function saveAccount(req, res) {
-                options.findModel(req, function (err, savedUser) {
-                    //app.models.User.findOne({name: req.user.name},function(err,savedUser){
-                    if (err) throw err;
-                    allProps.forEach(function(prop) {
-
-                        if (options.updatableBooleanProps.indexOf(prop) > -1)
-                            savedUser[prop] = req.body[prop] || false;
-                        else
-                            savedUser[prop] = req.body[prop] || null;
-
-
-                    });
-
-                    for (var props in req.body){
-                        if (allProps.indexOf(props) == -1){
-                            res.render('403', { status: 403, url: req.url, message: prop + " field not allowed in post body." });
-                            return;
-                        }
-                    }
-
-
-                    savedUser.save(function (err) {
-                        if (err) {
-                            req.flash('error', req.t("data-error"));
-                            options.render(req, res, savedUser);
-                        } else {
-                            req.flash('info', req.t("successfully-saved"));
-                            res.redirect(req.url);
-                        }
-
-
-
-                    });
-                });
-
-
-            }
-        );
-    }
 
 };
 

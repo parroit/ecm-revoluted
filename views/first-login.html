@@ -1,0 +1,94 @@
+<h3>Benvenuto, {{user.nome}} {{user.cognome}}</h3>
+<p>Per favore conferma i tuoi dati per procedere</p>
+<form id="edit-user" method="post">
+
+
+    <div class="left-column">
+        {{#af.field}}
+        <input readonly="readonly" type="text" id="user.name">
+        {{/af.field}}
+
+
+
+        {{#af.field}}
+        <input type="text" id="user.nome">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.cognome">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="email" id="user.email">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.luogo_nascita">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="date" id="user.data_nascita">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.codice_fiscale">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="checkbox" id="user.conteggio_ore">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.sponsor">
+        {{/af.field}}
+    </div>
+
+
+    <div class="right-column col">
+        {{#af.field}}
+        <select id="user.prof_dip" name="prof_dip">
+            {{#categorie}}
+                <option value="{{key}}">{{value}}</option>
+
+            {{/categorie}}
+        </select>
+        {{/af.field}}
+
+        {{#af.field}}
+        <select id="user.professione">
+            {{#professioni}}
+                <option value="{{key}}">{{value}}</option>
+            {{/professioni}}
+        </select>
+        {{/af.field}}
+
+        {{#af.field}}
+        <select id="user.disciplina">
+            {{#discipline}}
+                <option value="{{key}}">{{value}}</option>
+            {{/discipline}}
+        </select>
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="text" id="user.farmacia">
+        {{/af.field}}
+
+
+
+
+    </div>
+    <div class="buttons">
+        <button class="btn btn-large btn-primary">
+            <i class="icon-ok icon-white"></i>
+            Conferma
+        </button>
+
+        <a class="btn" href="/">
+            <i class="icon-remove-sign icon-white"></i>
+            Cancel
+        </a>
+    </div>
+
+
+</form>
