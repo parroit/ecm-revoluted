@@ -5,18 +5,35 @@
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body class="container">
-    {{#flash}}
-        <div class="alert alert-block alert-error">
+    {{#flash.error}}
+        <aside class="flash-error alert alert-block alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Impossibile salvare</h4>
+            <h4>{{#t}}flash-error-title{{/t}}</h4>
             {{.}}
 
-        </div>
-    {{/flash}}
+        </aside>
+    {{/flash.error}}
+
+    {{#flash.info}}
+        <aside class="flash-info alert alert-block alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <h4>{{#t}}flash-info-title{{/t}}</h4>
+            {{.}}
+
+        </aside>
+    {{/flash.info}}
 
     {{{ yield }}}
     <a href="/logout">Logout</a>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                $(".flash-info").remove();
+            },5000);
+
+        });
+    </script>
 </body>
 </html>

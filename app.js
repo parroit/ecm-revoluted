@@ -53,6 +53,10 @@ app.use(function (req, res, next) {
         };
     };
 
+    req.t = function(){
+        return i18n.__.apply(req, arguments);
+    };
+
     next();
 });
 

@@ -18,5 +18,10 @@
 	"user.prof_dip": "Categoria lavorativa",
 	"user.professione": "Professione",
 	"user.disciplina": "Disciplina",
-	"user.admin": "Amministratore"
+	"user.admin": "Amministratore",
+	"flash-error-title": "Errore",
+	"{{.}}": "{{.}}",
+	"flash-info-title": "Informazione",
+	"successfully-saved": "Salvato con successo.",
+	"data-error": "Impossibile salvare. C'è un errore nei dati"
 }

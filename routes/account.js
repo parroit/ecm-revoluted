@@ -28,7 +28,7 @@ exports.mount= function(app) {
         app.ensureAuthenticated ,
 
         function (req, res){
-            res.render('account', getUserContext(req.user));
+            res.render('account', getUserContext(req.user,req.flash()));
         }
     );
 
@@ -54,14 +54,14 @@ exports.mount= function(app) {
 
                 savedUser.save(function (err) {
                     if (err) {
-                        req.flash('flash', err.toString())
+                        req.flash('error', req.t("data-error"));
                     } else {
-
+                        req.flash('info', req.t("successfully-saved"));
                     }
 
 
                     res.render('account',
-                        getUserContext(savedUser,req.flash('flash'))
+                        getUserContext(savedUser,req.flash())
 
                     );
                 });
