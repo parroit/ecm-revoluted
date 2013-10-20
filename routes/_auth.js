@@ -59,6 +59,7 @@ exports.mount= function(app) {
     }
     app.ensureRegisteredUser=ensureRegisteredUser;
     app.ensureAuthenticated=ensureAuthenticated;
+    app.ensureAdmin=ensureAdmin;
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -139,6 +140,21 @@ function ensureAuthenticated(req, res, next) {
 
 
 }
+
+function ensureAdmin(req, res, next) {
+    if (req.isAuthenticated()) {
+        if (req.user.admin)
+            return next();
+        else
+            res.render('403', { status: 403, url: req.url, message:"You are not authorized to access this resource." });
+
+    } else {
+        res.redirect('/login?redirect='+req.url);
+    }
+
+
+}
+
 
 function logout(req, res){
     req.logout();

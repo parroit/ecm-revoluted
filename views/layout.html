@@ -1,37 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ECM Revoluted</title>
+    <title>Web ECM | Formazione a distanza</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
-<body class="container">
-    {{#flash.error}}
-        <aside class="flash-error alert alert-block alert-error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>{{#t}}flash-error-title{{/t}}</h4>
-            {{.}}
+<body>
 
-        </aside>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="brand">
+
+                    <span class="text">Web ECM</span>
+                    <span class="text2">Formazione a distanza</span></a>
+                </div>
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/index" class="active"><span>Home</span></a></li>
+                        <li><a href="/exams"><span>Corsi</span></a></li>
+                        <li><a href="/account"><span>Area riservata</span></a></li>
+                        <li><a href="/chisiamo"><span>Chi siamo</span></a></li>
+                        <li><a href="/contattaci"><span>Contattaci</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{#flash.error}}
+    <aside class="flash-error alert alert-block alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>{{#t}}flash-error-title{{/t}}</h4>
+        {{.}}
+
+    </aside>
     {{/flash.error}}
 
     {{#flash.info}}
-        <aside class="flash-info alert alert-block alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>{{#t}}flash-info-title{{/t}}</h4>
-            {{.}}
+    <aside class="flash-info alert alert-block alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>{{#t}}flash-info-title{{/t}}</h4>
+        {{.}}
 
-        </aside>
+    </aside>
     {{/flash.info}}
 
-    {{{ yield }}}
-    <a href="/logout">Logout</a>
+    <div class="content">
+        <div>
+            <div>
+
+                {{{ yield }}}
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <footer>
+        <div>
+            <div>
+                <p class="pull-left">&copy; Copyright <a href="http://ebansoftware.net">Eban Software</a>.</p>
+
+                <p class="pull-right">
+                    Logged user:{{req.user.name}} | <a href="/logout">Logout</a>
+                </p>
+            </div>
+        </div>
+    </footer>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script>
-        $(document).ready(function(){
-            setTimeout(function(){
+        $(document).ready(function () {
+            setTimeout(function () {
                 $(".flash-info").remove();
-            },5000);
+            }, 5000);
 
         });
     </script>

@@ -1,2 +1,34 @@
 @import "bootstrap-2.3.2/bootstrap";
 @import "account";
+@import "admin";
+
+aside{
+  margin-top: 50px;
+
+}
+div.content {
+  .container();
+  margin-top: 50px;
+
+  > div{
+    .makeRow();
+
+    > div {
+      .makeColumn(12);
+    }
+  }
+}
+
+footer {
+  .navbar();
+  .navbar-fixed-bottom();
+
+  > div{
+    .navbar-inner();
+
+    > div {
+      .container();
+      padding-top: 8px;
+    }
+  }
+}

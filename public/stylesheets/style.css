@@ -5426,3 +5426,97 @@ a.badge:focus {
 #edit-user div.field div span.error {
   margin-bottom: 0;
 }
+#esami,
+#utenti {
+  border: 1px solid #ddd;
+  border-top: none;
+  margin-top: -2px;
+  padding-top: 0;
+  min-height: 400px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 5px 5px 5px #f5f5f5;
+  margin-right: -2px;
+}
+#utenti {
+  display: none;
+}
+.nav.nav-tabs {
+  margin-bottom: 0;
+}
+aside {
+  margin-top: 50px;
+}
+div.content {
+  width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+  margin-top: 50px;
+}
+div.content:before,
+div.content:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+div.content:after {
+  clear: both;
+}
+div.content > div {
+  margin-left: -20px;
+  *zoom: 1;
+}
+div.content > div:before,
+div.content > div:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+div.content > div:after {
+  clear: both;
+}
+div.content > div > div {
+  float: left;
+  margin-left: 20px;
+  width: 940px;
+}
+footer {
+  overflow: visible;
+  margin-bottom: 20px;
+  *position: relative;
+  *z-index: 2;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-bottom: 0;
+  bottom: 0;
+}
+footer .navbar-inner {
+  -webkit-box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+  box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+}
+footer > div {
+  -webkit-box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+  -moz-box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+  box-shadow: 0 -1px 10px rgba(0,0,0,.1);
+}
+footer > div > div {
+  width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+  *zoom: 1;
+  padding-top: 8px;
+}
+footer > div > div:before,
+footer > div > div:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+footer > div > div:after {
+  clear: both;
+}
