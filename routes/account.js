@@ -8,11 +8,13 @@ exports.mount= function(app) {
         app.models.User.findOne({name: req.user.name},function(err,savedUser){
             if (err) throw err;
             for (var prop in req.body){
-                savedUser[prop] = req.body[prop];
+                if (req.body.hasOwnProperty(prop))
+                    savedUser[prop] = req.body[prop];
             }
 
-            for (var prop in ['confirmed','admin','staff','conteggio_ore']){
-                savedUser[prop] = req.body[prop] || false;
+            for (var boolProp in ['confirmed','admin','staff','conteggio_ore']){
+                if (req.body.hasOwnProperty(boolProp))
+                    savedUser[boolProp] = req.body[boolProp] || false;
             }
 
             console.dir(req.body["staff"]);

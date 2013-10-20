@@ -109,11 +109,11 @@ function alterInput(field, $input) {
 }
 
 
-function renderTemplate(modelField, self, templateText) {
+function renderTemplate(context,modelField, self, templateText) {
     var error,errorClass;
 
     if (modelField.error && modelField.error.length && modelField.error[0]) {
-        error = self.i18n.__.apply(this, modelField.error);
+        error = self.i18n.__.apply(context, modelField.error);
         errorClass = " text-error";
     }
     else {
@@ -121,7 +121,7 @@ function renderTemplate(modelField, self, templateText) {
         errorClass = "";
     }
 
-    var label = self.i18n.__.call(this, modelField.qualifiedId);
+    var label = self.i18n.__.call(context, modelField.qualifiedId);
     return [
         '<div class="field', errorClass, '">',
         '<label for="', modelField.qualifiedId, '">', label, '</label>',
@@ -149,7 +149,7 @@ Aweforms.prototype.field = function () {
         alterInput(field, $input);
 
 
-        return renderTemplate(field, self, $);
+        return renderTemplate(this,field, self, $);
     }
 };
 

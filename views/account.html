@@ -2,40 +2,38 @@
 <form id="edit-user" method="post">
 
 
-
-
     <div class="left-column">
         {{#af.field}}
-            <input readonly type="text" id="user.name">
+        <input readonly type="text" id="user.name">
         {{/af.field}}
 
 
         {{#af.field}}
-            <input type="text" id="user.nome">
+        <input type="text" id="user.nome">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="text" id="user.cognome">
+        <input type="text" id="user.cognome">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="email" id="user.email">
+        <input type="email" id="user.email">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="text" id="user.luogo_nascita">
+        <input type="text" id="user.luogo_nascita">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="date" id="user.data_nascita">
+        <input type="date" id="user.data_nascita">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="text" id="user.codice_fiscale">
+        <input type="text" id="user.codice_fiscale">
         {{/af.field}}
 
         {{#af.field}}
-            <input type="checkbox" id="user.conteggio_ore">
+        <input type="checkbox" id="user.conteggio_ore">
         {{/af.field}}
 
     </div>
@@ -43,41 +41,45 @@
 
     <div class="right-column col">
         {{#af.field}}
-                <select id="user.prof_dip" name="prof_dip">
-                    <option value=""></option>
-                    <option value="L">Libero professionista</option>
-                    <option value="D">Dipendente</option>
-                    <option value="C">Convenzionato</option>
+        <select id="user.prof_dip" name="prof_dip">
+            <option value=""></option>
+            <option value="L">Libero professionista</option>
+            <option value="D">Dipendente</option>
+            <option value="C">Convenzionato</option>
 
-                </select>
+        </select>
         {{/af.field}}
 
         {{#af.field}}
-                <select id="user.professione"></select>
+        <select id="user.professione"></select>
         {{/af.field}}
 
         {{#af.field}}
-                <select id="user.disciplina"></select>
+        <select id="user.disciplina"></select>
         {{/af.field}}
 
         {{#af.field}}
-                <input type="text" id="user.farmacia">
+        <input type="text" id="user.farmacia">
         {{/af.field}}
 
         {{#af.field}}
-                <input type="text" id="user.sponsor">
+        <input type="text" id="user.sponsor">
         {{/af.field}}
 
         {{#af.field}}
-                <input type="checkbox" id="user.staff">
+        <input type="checkbox" id="user.staff">
         {{/af.field}}
 
         {{#af.field}}
-                <input type="checkbox" id="user.confirmed">
+        <input type="checkbox" id="user.admin">
         {{/af.field}}
 
         {{#af.field}}
-                <input type="date" id="user.creation_date">
+        <input type="checkbox" id="user.confirmed">
+        {{/af.field}}
+
+        {{#af.field}}
+        <input type="date" id="user.creation_date">
         {{/af.field}}
 
 
