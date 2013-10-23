@@ -13,57 +13,26 @@ exports.mount = function (app) {
 
     });
 
-    app.get('/users', app.ensureAdmin, function (req, res) {
-        var page = parseInt(req.query.page) || 0;
-        var sort = req.query.sort || 'name';
-        var sortDirection = req.query.sortDirection || 'asc';
-        var PAGE_LENGTH = 15;
-        var filter;
-        var value;
-        if (req.query.filter){
-            value =req.query.filter;
-            filter= {
-                "$or":[
-                    {name: new RegExp(value, 'i')},
-                    {nome: new RegExp(value, 'i')},
-                    {cognome: new RegExp(value, 'i')},
-                    {codice_fiscale: new RegExp(value, 'i')},
-                    {farmacia: new RegExp(value, 'i')},
-                    {email: new RegExp(value, 'i')}
-
-
-                ]
-            }
-        } else {
-            filter= {};
-            value="";
-        }
-        app.models.User.count(filter, function (err, count) {
-            var query = app.models.User.find(filter, 'name nome cognome codice_fiscale farmacia', { skip: page * PAGE_LENGTH, limit: PAGE_LENGTH })
-            var sorter = {};
-            sorter[sort] = sortDirection;
-            query.sort(sorter)
-                .find(function (err, items) {
-                    if (value){
-                        for(var i= 0, l=items.length; i<l; i++){
-                            ['name','nome','cognome','codice_fiscale','farmacia'].forEach(function(prop){
-                                var regExp = new RegExp("(" + value + ")", 'ig');
-                                var coded = '<span class="search-term">$1</span>';
-                                items[i][prop]=items[i][prop] && items[i][prop].replace(regExp, coded);
-                            });
-                        }
-                    }
-
-                    res.json( {
-                        items: items,
-                        currPage: page,
-                        totalPages: parseInt(count / PAGE_LENGTH)
-                    });
-                });
-        });
-
-
+    crud(app,{
+        authentication: app.ensureAdmin,
+        model: app.models.User,
+        rootUrl: "/user",
+        findModel: function (req, next) {
+            app.models.User.findOne({name: req.user.name}, next);
+        },
+        render: function (req, res, user) {
+            res.render('account', getUserContext(user, req.flash()));
+        },
+        listFields:['name','nome','cognome','codice_fiscale','farmacia'],
+        updatableBooleanProps: ['confirmed', 'admin', 'staff', 'conteggio_ore'],
+        updatableProps: [
+            "nome", "password", "email", "codice_fiscale",
+            "prof_dip", "professione", "sponsor", "disciplina", "luogo_nascita", "data_nascita",
+            "cognome", "farmacia"
+        ]
     });
+
+
 
 
 };

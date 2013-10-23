@@ -63,30 +63,33 @@ app.use(function (req, res, next) {
 var aweforms = require("aweforms");
 app.use(aweforms.init(i18n));
 
-var routes = fs.readdirSync("routes");
-routes.sort();
-routes.forEach(function(routePath){
-    console.log("Importing route "+routePath);
-    try{
-        var route = require('./routes/'+routePath);
-        route.mount(app);
-    } catch (error){
-        console.log("Cannot mount route %s. %s",routePath,error);
-    }
 
-});
-
-
-
-app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 require("ecm-model").connect('mongodb://localhost/'+config.dbName,function (schemas, models){
     app.models = models;
     app.schemas = schemas;
     console.log('Mongodb connection ready');
+
+    var routes = fs.readdirSync("routes");
+    routes.sort();
+    routes.forEach(function(routePath){
+        console.log("Importing route "+routePath);
+        try{
+            var route = require('./routes/'+routePath);
+            route.mount(app);
+        } catch (error){
+            console.log("Cannot mount route %s. %s",routePath,error);
+        }
+
+    });
+
+
+
+    app.use(app.router);
+    app.use(require('less-middleware')({ src: __dirname + '/public' }));
+    app.use(express.static(path.join(__dirname, 'public')));
+
     http.createServer(app).listen(app.get('port'), function(){
         console.log('Ecm revoluted is ready and listening on port ' + app.get('port'));
     });

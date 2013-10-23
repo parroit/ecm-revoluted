@@ -5,7 +5,7 @@ function AdminUtentiCtrl($scope, $http) {
     $scope.sortDirection = 'asc';
     $scope.searchFilter = '';
     $scope.load = function (page) {
-        var url = "/users?page=" + page +
+        var url = "/user/list?page=" + page +
             "&sort=" + $scope.sortField +
             "&filter=" + (($scope.$$childHead && $scope.$$childHead.searchFilter) || '')  +
             "&sortDirection=" + $scope.sortDirection;
@@ -16,8 +16,8 @@ function AdminUtentiCtrl($scope, $http) {
                 $scope.totalPages = data.totalPages;
             })
 
-            .error(function () {
-                alert("unable to retrieve users.");
+            .error(function (err) {
+                alert("unable to retrieve users:"+err);
             });
     };
     $scope.search = function(){
