@@ -1,87 +1,105 @@
-<div class="row">
-    <div class="span2">
-        <a class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Nuovo utente</a>
-    </div>
+<ul class="breadcrumb">
+    <li><a href="#/users">Utenti</a> <span class="divider">/</span></li>
 
-    <div class="span4">
-        <div class="btn-group">
-            <a class="btn" ng-click="firstPage()" ng-class="{disabled: page < 1}">
-                <i class="icon-circle-arrow-left"></i> &nbsp;
-            </a>
-            <a class="btn" ng-click="prevPage()" ng-class="{disabled: page < 1}">
-                <i class=" icon-arrow-left"></i> &nbsp;
-            </a>
-            <a class="btn disabled" ng-bind="(page+1) + ' of ' + totalPages"></a>
-            <a class="btn" ng-click="nextPage()" ng-class="{disabled: page >= totalPages-1}">
-                <i class=" icon-arrow-right"></i> &nbsp;
-            </a>
-            <a class="btn" ng-click="lastPage()" ng-class="{disabled: page >= totalPages-1}">
-                <i class=" icon-circle-arrow-right"></i> &nbsp;
-            </a>
-        </div>
-    </div>
+</ul>
+<ul class="nav nav-tabs">
 
-    <div class="span5">
-        <form class="form-inline pull-right">
-            <div class="input-append">
-                <input type="text" ng-model="searchFilter" name="searchFilter">
-                <button class="btn" type="submit" ng-click="search()"><i class=" icon-search"></i> Search</button>
+    <li class="active">
+        <a href="">Utenti</a>
+    </li>
+    <li>
+        <a href="#/exams">Esami</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="utenti" class="tab-pane active">
+        <div class="row">
+            <div class="span2">
+                <a class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Nuovo utente</a>
+            </div>
+
+            <div class="span4">
+                <div class="btn-group">
+                    <a class="btn" ng-click="firstPage()" ng-class="{disabled: page < 1}">
+                        <i class="icon-circle-arrow-left"></i> &nbsp;
+                    </a>
+                    <a class="btn" ng-click="prevPage()" ng-class="{disabled: page < 1}">
+                        <i class=" icon-arrow-left"></i> &nbsp;
+                    </a>
+                    <a class="btn disabled" ng-bind="(page+1) + ' of ' + totalPages"></a>
+                    <a class="btn" ng-click="nextPage()" ng-class="{disabled: page >= totalPages-1}">
+                        <i class=" icon-arrow-right"></i> &nbsp;
+                    </a>
+                    <a class="btn" ng-click="lastPage()" ng-class="{disabled: page >= totalPages-1}">
+                        <i class=" icon-circle-arrow-right"></i> &nbsp;
+                    </a>
+                </div>
+            </div>
+
+            <div class="span5">
+                <form class="form-inline pull-right">
+                    <div class="input-append">
+                        <input type="text" ng-model="searchFilter" name="searchFilter">
+                        <button class="btn" type="submit" ng-click="search()"><i class=" icon-search"></i> Search
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
-        </form>
-
-    </div>
-
-</div>
+        </div>
 
 
-<div class="row">
-    <div class="span11">
-        <table class="table table-bordered table-condensed table-hover table-striped">
-            <thead>
-            <tr>
+        <div class="row">
+            <div class="span11">
+                <table class="table table-bordered table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
 
-                <th><a href="" ng-click="sort('name')">Username</a></th>
-                <th><a href="" ng-click="sort('nome')">Nome</a></th>
-                <th><a href="" ng-click="sort('cognome')">Cognome</a></th>
-                <th><a href="" ng-click="sort('codice_fiscale')">Cod.Fiscale</a></th>
-                <th><a href="" ng-click="sort('farmacia')">Farmacia</a></th>
-                <th>&nbsp;</th>
+                        <th><a href="" ng-click="sort('name')">Username</a></th>
+                        <th><a href="" ng-click="sort('nome')">Nome</a></th>
+                        <th><a href="" ng-click="sort('cognome')">Cognome</a></th>
+                        <th><a href="" ng-click="sort('codice_fiscale')">Cod.Fiscale</a></th>
+                        <th><a href="" ng-click="sort('farmacia')">Farmacia</a></th>
+                        <th>&nbsp;</th>
 
-            </tr>
+                    </tr>
 
 
-            </thead>
-            <tbody>
-                <tr ng-repeat="user in users">
-                    <td ng-bind-html-unsafe="user.name"></td>
-                    <td ng-bind-html-unsafe="user.nome"></td>
-                    <td ng-bind-html-unsafe="user.cognome"></td>
-                    <td ng-bind-html-unsafe="user.codice_fiscale"></td>
-                    <td ng-bind-html-unsafe="user.farmacia"></td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in users">
+                        <td ng-bind-html-unsafe="item.name"></td>
+                        <td ng-bind-html-unsafe="item.nome"></td>
+                        <td ng-bind-html-unsafe="item.cognome"></td>
+                        <td ng-bind-html-unsafe="item.codice_fiscale"></td>
+                        <td ng-bind-html-unsafe="item.farmacia"></td>
                         <td>
-                        <div class="btn-group">
-                            <a class="btn btn-primary" ng-click="editExam">
-                                <i class="icon-pencil icon-white"></i> Modifica
-                            </a>
-                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-asterisk"></i> Altro
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a><i class="icon-minus-sign"></i> Cancella</a></li>
-                                <li><a><i class="icon-envelope"></i> Invia password</a></li>
-                                <li><a><i class="icon-briefcase"></i> Esami</a></li>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" ng-click="edit()">
+                                    <i class="icon-pencil icon-white"></i> Modifica
+                                </a>
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="icon-asterisk"></i> Altro
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a><i class="icon-minus-sign"></i> Cancella</a></li>
+                                    <li><a><i class="icon-envelope"></i> Invia password</a></li>
+                                    <li><a><i class="icon-briefcase"></i> Esami</a></li>
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
-
 

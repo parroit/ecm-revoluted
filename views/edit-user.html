@@ -1,4 +1,9 @@
-<h3>Modifica utente {{user.name}}</h3>
+<ul class="breadcrumb">
+    <li><a href="#/users">Utenti</a> <span class="divider">/</span></li>
+    <li><a href="#/users/{{user.name}}"><span ng-bind="user.nome"></span> <span ng-bind="user.cognome"></span></a> <span class="divider">/</span></li>
+</ul>
+
+<h3>Modifica utente <span ng-bind="user.nome"></span> <span ng-bind="user.cognome"></span></h3>
 <form id="edit-user" method="post">
 
 

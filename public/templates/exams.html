@@ -1,78 +1,97 @@
-<div class="row">
-    <div class="span2">
-        <a id="new-exam" class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Nuovo corso</a>
-    </div>
+<ul class="breadcrumb">
+    <li><a href="#/exams">Esami</a> <span class="divider">/</span></li>
 
-    <div class="span4">
-        <div class="btn-group">
-            <a class="btn" ng-click="firstPage()" ng-class="{disabled: page < 1}">
-                <i class="icon-circle-arrow-left"></i> &nbsp;
-            </a>
-            <a class="btn" ng-click="prevPage()" ng-class="{disabled: page < 1}">
-                <i class=" icon-arrow-left"></i> &nbsp;
-            </a>
-            <a class="btn" ng-bind="page+1"></a>
-            <a class="btn" ng-click="nextPage()" ng-class="{disabled: page >= totalPages}">
-                <i class=" icon-arrow-right"></i> &nbsp;
-            </a>
-            <a class="btn" ng-click="lastPage()" ng-class="{disabled: page >= totalPages}">
-                <i class=" icon-circle-arrow-right"></i> &nbsp;
-            </a>
-        </div>
-    </div>
+</ul>
+<ul class="nav nav-tabs">
 
-    <div class="span5">
-        <form class="form-inline pull-right">
-            <div class="input-append">
-                <input ng-model="filter" ng-change="search()" type="text">
-                <button class="btn" type="submit"><i class=" icon-search"></i> Search</button>
+    <li>
+        <a href="#/users">Utenti</a>
+    </li>
+    <li class="active">
+        <a href="">Esami</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="esami" class="tab-pane active">
+        <div class="row">
+            <div class="span2">
+                <a id="new-exam" class="btn btn-primary"><i class="icon-white icon-plus-sign"></i> Nuovo corso</a>
+            </div>
+
+            <div class="span4">
+                <div class="btn-group">
+                    <a class="btn" ng-click="firstPage()" ng-class="{disabled: page < 1}">
+                        <i class="icon-circle-arrow-left"></i> &nbsp;
+                    </a>
+                    <a class="btn" ng-click="prevPage()" ng-class="{disabled: page < 1}">
+                        <i class=" icon-arrow-left"></i> &nbsp;
+                    </a>
+                    <a class="btn" ng-bind="page+1"></a>
+                    <a class="btn" ng-click="nextPage()" ng-class="{disabled: page >= totalPages}">
+                        <i class=" icon-arrow-right"></i> &nbsp;
+                    </a>
+                    <a class="btn" ng-click="lastPage()" ng-class="{disabled: page >= totalPages}">
+                        <i class=" icon-circle-arrow-right"></i> &nbsp;
+                    </a>
+                </div>
+            </div>
+
+            <div class="span5">
+                <form class="form-inline pull-right">
+                    <div class="input-append">
+                        <input ng-model="filter" ng-change="search()" type="text">
+                        <button class="btn" type="submit"><i class=" icon-search"></i> Search</button>
+
+                    </div>
+                </form>
 
             </div>
-        </form>
 
+        </div>
+
+
+        <div class="row">
+            <div class="span11">
+                <table class="table table-bordered table-condensed table-hover table-striped">
+                    <thead>
+                    <tr>
+
+                        <th><a href="#">Codice</a></th>
+                        <th><a href="#">Titolo</a></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="exam in exams">
+                        <td ng-bind="exam.codice"></td>
+                        <td ng-bind="exam.title"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-primary" ng-click="editExam">
+                                    <i class="icon-pencil icon-white"></i> Modifica
+                                </a>
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="icon-asterisk"></i> Altro
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a><i class="icon-minus-sign"></i> Cancella</a></li>
+                                    <li><a><i class="icon-list-alt"></i> Rapporto ministeriale</a></li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
 </div>
 
 
-<div class="row">
-    <div class="span11">
-        <table class="table table-bordered table-condensed table-hover table-striped">
-            <thead>
-            <tr>
-
-                <th><a href="#">Codice</a></th>
-                <th><a href="#">Titolo</a></th>
-                <th>&nbsp;</th>
-            </tr>
-
-
-            </thead>
-            <tbody>
-            <tr ng-repeat="exam in exams">
-                <td ng-bind="exam.codice"></td>
-                <td ng-bind="exam.title"></td>
-                <td>
-                    <div class="btn-group">
-                        <a class="btn btn-primary" ng-click="editExam">
-                            <i class="icon-pencil icon-white"></i> Modifica
-                        </a>
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="icon-asterisk"></i> Altro
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a><i class="icon-minus-sign"></i> Cancella</a></li>
-                            <li><a><i class="icon-list-alt"></i> Rapporto ministeriale</a></li>
-
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
-    </div>
-</div>
 
 

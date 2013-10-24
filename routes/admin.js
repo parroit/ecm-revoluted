@@ -13,15 +13,22 @@ exports.mount = function (app) {
 
     });
 
+    app.get('/ng-templates/edit-user', app.ensureAdmin, function (req, res) {
+        res.locals.af.field = res.locals.af.fieldNg;
+        res.render('edit-user');
+
+    });
+
     crud(app,{
         authentication: app.ensureAdmin,
         model: app.models.User,
         rootUrl: "/user",
+        instanceUrl: "/user/:name",
         findModel: function (req, next) {
-            app.models.User.findOne({name: req.user.name}, next);
+            app.models.User.findOne({name: req.params.name}, next);
         },
-        render: function (req, res, user) {
-            res.render('account', getUserContext(user, req.flash()));
+        render: function (req, res, data) {
+            res.json(data);
         },
         listFields:['name','nome','cognome','codice_fiscale','farmacia'],
         updatableBooleanProps: ['confirmed', 'admin', 'staff', 'conteggio_ore'],

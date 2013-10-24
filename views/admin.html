@@ -1,24 +1,12 @@
 {{#yield-scripts}}
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.js"></script>
+    <script src="/js/admin.js"></script>
     <script src="/js/admin-esami.js"></script>
     <script src="/js/admin-utenti.js"></script>
+    <script src="/js/admin-edit-utente.js"></script>
+
 {{/yield-scripts}}
 
-<ul class="nav nav-tabs">
+<div ng-view></div>
 
-    <li class="active">
-        <a href="#utenti" data-toggle="tab">Utenti</a>
-    </li>
-    <li>
-        <a href="#esami" data-toggle="tab">Esami</a>
-    </li>
-</ul>
-<div class="tab-content">
-    <div id="utenti" class="tab-pane active">
-        <ng-include src="'/templates/users.html'" ng-controller="AdminUtentiCtrl"></ng-include>
-    </div>
-    <div id="esami" class="tab-pane">
-        <ng-include src="'/templates/exams.html'" ng-controller="AdminEsamiCtrl"></ng-include>
-    </div>
 
-</div>
