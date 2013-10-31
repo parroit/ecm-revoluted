@@ -5426,6 +5426,188 @@ a.badge:focus {
 #edit-user div.field div span.error {
   margin-bottom: 0;
 }
+#edit-exam {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #c09853;
+  margin-left: -20px;
+  *zoom: 1;
+}
+#edit-exam input,
+#edit-exam textarea,
+#edit-exam select,
+#edit-exam .help-inline,
+#edit-exam .uneditable-input,
+#edit-exam .input-prepend,
+#edit-exam .input-append {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+#edit-exam .hide {
+  display: none;
+}
+#edit-exam .control-group {
+  margin-bottom: 20px;
+  *zoom: 1;
+}
+#edit-exam .control-group:before,
+#edit-exam .control-group:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#edit-exam .control-group:after {
+  clear: both;
+}
+#edit-exam .control-label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+}
+#edit-exam .controls {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 180px;
+  *margin-left: 0;
+}
+#edit-exam .controls:first-child {
+  *padding-left: 180px;
+}
+#edit-exam .help-block {
+  margin-bottom: 0;
+}
+#edit-exam input + .help-block,
+#edit-exam select + .help-block,
+#edit-exam textarea + .help-block,
+#edit-exam .uneditable-input + .help-block,
+#edit-exam .input-prepend + .help-block,
+#edit-exam .input-append + .help-block {
+  margin-top: 10px;
+}
+#edit-exam .form-actions {
+  padding-left: 180px;
+}
+#edit-exam:before,
+#edit-exam:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#edit-exam:after {
+  clear: both;
+}
+#edit-exam .left-column {
+  float: left;
+  margin-left: 20px;
+  width: 300px;
+}
+#edit-exam .bottom-column {
+  float: left;
+  margin-left: 20px;
+  width: 620px;
+}
+#edit-exam .right-column {
+  float: left;
+  margin-left: 100px;
+  width: 300px;
+}
+#edit-exam .buttons {
+  float: left;
+  margin-left: 100px;
+  width: 620px;
+}
+#edit-exam div.field.error {
+  color: #b94a48;
+}
+#edit-exam div.field.error .control-label,
+#edit-exam div.field.error .help-block,
+#edit-exam div.field.error .help-inline {
+  color: #b94a48;
+}
+#edit-exam div.field.error .checkbox,
+#edit-exam div.field.error .radio,
+#edit-exam div.field.error input,
+#edit-exam div.field.error select,
+#edit-exam div.field.error textarea {
+  color: #b94a48;
+}
+#edit-exam div.field.error input,
+#edit-exam div.field.error select,
+#edit-exam div.field.error textarea {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+#edit-exam div.field.error input:focus,
+#edit-exam div.field.error select:focus,
+#edit-exam div.field.error textarea:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+}
+#edit-exam div.field.error .input-prepend .add-on,
+#edit-exam div.field.error .input-append .add-on {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #b94a48;
+}
+#edit-exam div.field {
+  margin-bottom: 20px;
+  *zoom: 1;
+}
+#edit-exam div.field:before,
+#edit-exam div.field:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+#edit-exam div.field:after {
+  clear: both;
+}
+#edit-exam div.field label {
+  float: left;
+  width: 160px;
+  padding-top: 5px;
+  text-align: right;
+}
+#edit-exam div.field div {
+  *display: inline-block;
+  *padding-left: 20px;
+  margin-left: 180px;
+  *margin-left: 0;
+}
+#edit-exam div.field div:first-child {
+  *padding-left: 180px;
+}
+#edit-exam div.field div span.error {
+  margin-bottom: 0;
+}
+#edit-exam #exam\.title {
+  width: 530px;
+}
+#edit-exam #exam\.target {
+  width: 530px;
+}
+#edit-exam #exam\.finality {
+  width: 530px;
+}
+#edit-exam #exam\.description {
+  width: 530px;
+}
 .tab-content {
   border: 1px solid #ddd;
   border-top: none;

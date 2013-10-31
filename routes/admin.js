@@ -6,16 +6,16 @@ exports.mount = function (app) {
         res.render('admin');
     });
 
-    app.get('/exams', app.ensureAdmin, function (req, res) {
+   /* app.get('/exams', app.ensureAdmin, function (req, res) {
         app.models.Exam.find({}, 'codice title', function (err, items) {
             res.json(items);
         });
 
-    });
+    });*/
 
-    app.get('/ng-templates/edit-user', app.ensureAdmin, function (req, res) {
+    app.get('/ng-templates/:tmpl', app.ensureAdmin, function (req, res) {
         res.locals.af.field = res.locals.af.fieldNg;
-        res.render('edit-user');
+        res.render( req.params.tmpl);
 
     });
 
@@ -27,6 +27,9 @@ exports.mount = function (app) {
         findModel: function (req, next) {
             app.models.User.findOne({name: req.params.name}, next);
         },
+        renderPostSuccess: function (req, res, data) {
+            res.json(data);
+        },
         render: function (req, res, data) {
             res.json(data);
         },
@@ -36,6 +39,31 @@ exports.mount = function (app) {
             "nome", "password", "email", "codice_fiscale",
             "prof_dip", "professione", "sponsor", "disciplina", "luogo_nascita", "data_nascita",
             "cognome", "farmacia"
+        ]
+    });
+
+    crud(app,{
+        authentication: app.ensureAdmin,
+        model: app.models.Exam,
+        rootUrl: "/exam",
+        instanceUrl: "/exam/:codice",
+        findModel: function (req, next) {
+            app.models.Exam.findOne({codice: req.params.codice}, next);
+        },
+        renderPostSuccess: function (req, res, data) {
+            res.json(data);
+        },
+        render: function (req, res, data) {
+            res.json(data);
+        },
+        listFields:['codice','title'],
+        updatableBooleanProps: ['closed'],
+        updatableProps: [
+            'title', 'target','finality','description','closed',
+            ,'data_inizio','data_fine',
+            ,'punti','durata_ore','originalManualFilename','actualManualFilename'
+
+
         ]
     });
 

@@ -56,20 +56,20 @@
                     <thead>
                     <tr>
 
-                        <th><a href="#">Codice</a></th>
-                        <th><a href="#">Titolo</a></th>
+                        <th><a href="" ng-click="sort('codice')">Codice</a></th>
+                        <th><a href="" ng-click="sort('title')">Titolo</a></th>
                         <th>&nbsp;</th>
                     </tr>
 
 
                     </thead>
                     <tbody>
-                    <tr ng-repeat="exam in exams">
-                        <td ng-bind="exam.codice"></td>
-                        <td ng-bind="exam.title"></td>
+                    <tr ng-repeat="item in exams">
+                        <td ng-bind="item.codice"></td>
+                        <td ng-bind="item.title"></td>
                         <td>
                             <div class="btn-group">
-                                <a class="btn btn-primary" ng-click="editExam">
+                                <a class="btn btn-primary" ng-click="edit()">
                                     <i class="icon-pencil icon-white"></i> Modifica
                                 </a>
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">

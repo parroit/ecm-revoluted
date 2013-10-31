@@ -25,5 +25,17 @@
 	"data-error": "Impossibile salvare. C'è un errore nei dati",
 	"user.update_date": "Modificato il",
 	"user.password": "Password",
-	"welcome-message": "I suoi dati sono stati confermati con successo. Li potrà variare in qualsiasi momento dalla pagina del profilo."
+	"welcome-message": "I suoi dati sono stati confermati con successo. Li potrà variare in qualsiasi momento dalla pagina del profilo.",
+	"exam.codice": "Codice",
+	"exam.title": "Titolo",
+	"exam.target": "Obiettivo",
+	"exam.finality": "Finalità",
+	"exam.description": "Descrizione",
+	"exam.closed": "Concluso",
+	"exam.data_inizio": "Data Inizio",
+	"exam.data_fine": "Data Fine",
+	"exam.punti": "Punti",
+	"exam.durata_ore": "Durata Ore",
+	"exam.originalManualFilename": "Manuale",
+	"exam.actualManualFilename": "Sul server"
 }
