@@ -77,9 +77,10 @@ require("ecm-model").connect('mongodb://localhost/'+config.dbName,function (sche
         console.log("Importing route "+routePath);
         try{
             var route = require('./routes/'+routePath);
+
             route.mount(app);
         } catch (error){
-            console.log("Cannot mount route %s. %s",routePath,error);
+            console.log("Cannot mount route %s. %s\n%s",routePath,error,error.stack);
         }
 
     });

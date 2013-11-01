@@ -1,6 +1,8 @@
 
 angular.module("ecm-admin")
     .controller("AdminEsamiCtrl",function ($scope, $http,$location) {
+
+
         $scope.page = 0;
         $scope.sortField = 'codice';
         $scope.sortDirection = 'asc';

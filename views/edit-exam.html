@@ -1,85 +1,93 @@
 <ul class="breadcrumb">
     <li><a href="#/exams">Esami</a> <span class="divider">/</span></li>
-    <li><a href="#/exams/{{exam.codice}}"><span ng-bind="exam.codice"></span> </span></a> <span class="divider">/</span></li>
+    <li><a href="#/exams/[[exam.codice]]"><span ng-bind="exam.codice"></span> </span></a> <span class="divider">/</span>
+    </li>
 </ul>
 
-<h3>Modifica esame <span ng-bind="exam.title"></span></h3>
-<form id="edit-exam" method="post">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#/exams/[[exam.codice]]" data-toggle="tab">Informazioni.</a></li>
+    <li><a href="#/exams-users/[[exam.codice]]" data-toggle="tab">Utenti iscritti</a></li>
+    <li><a href="#/exams-questions/[[exam.codice]]" data-toggle="tab">Domande</a></li>
+    <li><a href="#/exams-manual/[[exam.codice]]" data-toggle="tab">Gestione manuale</a></li>
+    <li><a href="#/exams-sessions/[[exam.codice]]" data-toggle="tab">Sessioni</a></li>
+
+</ul>
+<div class="tab-content">
+    <form id="edit-exam" method="post">
 
 
-    <div class="left-column">
-        {{#af.field}}
-        <input readonly="readonly" type="text" id="exam.codice">
-        {{/af.field}}
+        <div class="left-column">
+            {{#af.field}}
+            <input readonly="readonly" type="text" id="exam.codice">
+            {{/af.field}}
 
 
-        {{#af.field}}
-        <input type="checkbox" id="exam.closed">
-        {{/af.field}}
+            {{#af.field}}
+            <input type="checkbox" id="exam.closed">
+            {{/af.field}}
 
-        {{#af.field}}
-        <input type="date" id="exam.data_inizio">
-        {{/af.field}}
+            {{#af.field}}
+            <input type="date" id="exam.data_inizio">
+            {{/af.field}}
 
-        {{#af.field}}
-        <input type="date" id="exam.data_fine">
-        {{/af.field}}
-
-
-    </div>
-
-    <div class="right-column col">
-
-        {{#af.field}}
-        <input type="number" id="exam.punti">
-        {{/af.field}}
+            {{#af.field}}
+            <input type="date" id="exam.data_fine">
+            {{/af.field}}
 
 
+        </div>
 
-        {{#af.field}}
-        <input type="number" id="exam.durata_ore">
-        {{/af.field}}
+        <div class="right-column col">
 
-        {{#af.field}}
-        <input type="text" readonly="readonly" id="exam.originalManualFilename">
-        {{/af.field}}
-
-        {{#af.field}}
-        <input type="text" readonly="readonly" id="exam.actualManualFilename">
-        {{/af.field}}
+            {{#af.field}}
+            <input type="number" id="exam.punti">
+            {{/af.field}}
 
 
+            {{#af.field}}
+            <input type="number" id="exam.durata_ore">
+            {{/af.field}}
 
-    </div>
+            {{#af.field}}
+            <input type="text" readonly="readonly" id="exam.originalManualFilename">
+            {{/af.field}}
 
-    <div class="bottom-column">
-        {{#af.field}}
-        <input type="text" id="exam.title">
-        {{/af.field}}
+            {{#af.field}}
+            <input type="text" readonly="readonly" id="exam.actualManualFilename">
+            {{/af.field}}
 
-        {{#af.field}}
-        <select id="exam.target">
 
-        </select>
-        {{/af.field}}
+        </div>
 
-        {{#af.field}}
-        <textarea rows="15" id="exam.finality">
+        <div class="bottom-column">
+            {{#af.field}}
+            <input type="text" id="exam.title">
+            {{/af.field}}
+
+            {{#af.field}}
+            <select id="exam.target">
+
+            </select>
+            {{/af.field}}
+
+            {{#af.field}}
+            <textarea rows="15" id="exam.finality">
             </textarea>
-        {{/af.field}}
+            {{/af.field}}
 
-        {{#af.field}}
-        <textarea rows="15" id="exam.description">
-        </textarea>
-        {{/af.field}}
+            {{#af.field}}
+            <textarea rows="15" id="exam.description">
+            </textarea>
+            {{/af.field}}
 
-    </div>
-    <div class="buttons">
-        <button ng-click="save()" class="btn btn-large btn-primary">
-            <i class="icon-ok icon-white"></i>
-            Salva
-        </button>
-    </div>
+        </div>
+        <div class="buttons">
+            <button ng-click="save()" class="btn btn-large btn-primary">
+                <i class="icon-ok icon-white"></i>
+                Salva
+            </button>
+        </div>
 
 
-</form>
+    </form>
+</div>

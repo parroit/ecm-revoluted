@@ -5438,6 +5438,7 @@ a.badge:focus {
   color: #c09853;
   margin-left: -20px;
   *zoom: 1;
+  margin-left: 5px;
 }
 #edit-exam input,
 #edit-exam textarea,
@@ -5648,24 +5649,6 @@ div.content:after {
 }
 div.content:after {
   clear: both;
-}
-div.content > div {
-  margin-left: -20px;
-  *zoom: 1;
-}
-div.content > div:before,
-div.content > div:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-div.content > div:after {
-  clear: both;
-}
-div.content > div > div {
-  float: left;
-  margin-left: 20px;
-  width: 940px;
 }
 footer {
   overflow: visible;
